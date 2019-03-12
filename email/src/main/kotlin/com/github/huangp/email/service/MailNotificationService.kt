@@ -2,6 +2,7 @@ package com.github.huangp.email.service
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.cloud.client.discovery.DiscoveryClient
 import org.springframework.mail.javamail.JavaMailSender
 import javax.inject.Inject
 import javax.ws.rs.*
@@ -15,7 +16,8 @@ import javax.mail.internet.MimeMessage
 @Path("mail")
 @Consumes("application/json")
 @Produces("application/json")
-class MailNotificationService @Inject constructor(val javaMailSender: JavaMailSender) {
+class MailNotificationService @Inject constructor(
+        val javaMailSender: JavaMailSender) {
 
     @POST
     fun sendNotification(@QueryParam("to") to: String,

@@ -33,5 +33,6 @@
 
   <modules>
     <module>user</module>
+    <module>email</module>
   </modules>
 </project>

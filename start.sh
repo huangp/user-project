@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+./mvnw clean verify
+
 DOCKER_NETWORK=usernet
 
 function ensure_docker_network() {

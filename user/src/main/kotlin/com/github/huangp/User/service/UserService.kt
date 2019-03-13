@@ -38,9 +38,10 @@ class UserService @Inject constructor(
         }
         return if (existing == null) {
             log.info("creating new user: {}", user)
-            // TODO pahuang password hash
+
             user.active = true
             val saved = userRepository.save(user)
+            log.info("created new user: {}", user)
             sendNotificationEmail(user)
             Response.created(URI("${uriInfo.baseUri}/${saved.username}")).entity(saved).build()
         } else {

@@ -1,6 +1,5 @@
-package com.github.huangp.User.util
+package com.github.huangp.user.util
 
-import org.glassfish.jersey.internal.guava.Preconditions
 import org.slf4j.LoggerFactory
 import java.security.NoSuchAlgorithmException
 import java.security.SecureRandom

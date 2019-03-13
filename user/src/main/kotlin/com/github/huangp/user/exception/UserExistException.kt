@@ -1,4 +1,4 @@
-package com.github.huangp.User.exception
+package com.github.huangp.user.exception
 
 import javax.ws.rs.core.Response
 import javax.ws.rs.ext.ExceptionMapper

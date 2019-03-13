@@ -1,7 +1,7 @@
-package com.github.huangp.User.model
+package com.github.huangp.user.model
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.github.huangp.User.util.PasswordUtil
+import com.github.huangp.user.util.PasswordUtil
 import javax.persistence.*
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank

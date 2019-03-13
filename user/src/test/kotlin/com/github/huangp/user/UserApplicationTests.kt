@@ -1,4 +1,4 @@
-package com.github.huangp.User
+package com.github.huangp.user
 
 import org.junit.Test
 import org.junit.runner.RunWith

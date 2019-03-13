@@ -1,14 +1,16 @@
-package com.github.huangp.User.service
+package com.github.huangp.user.service
 
-import com.github.huangp.User.exception.UserExistException
-import com.github.huangp.User.model.AppUser
-import com.github.huangp.User.repository.UserRepository
-import org.glassfish.jersey.client.JerseyClient
+import com.github.huangp.user.exception.UserExistException
+import com.github.huangp.user.model.AppUser
+import com.github.huangp.user.repository.UserRepository
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiOperation
+import io.swagger.annotations.ApiResponse
+import io.swagger.annotations.ApiResponses
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.cloud.client.discovery.DiscoveryClient
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient
-import org.springframework.validation.Errors
 import java.net.URI
 import javax.inject.Inject
 import javax.validation.Valid
@@ -23,6 +25,7 @@ import javax.ws.rs.core.UriInfo
 @Path("user")
 @Consumes("application/json")
 @Produces("application/json")
+@Api(value = "User resource", produces = "application/json", consumes = "application/json")
 class UserService @Inject constructor(
         val userRepository: UserRepository,
         val discoveryClient: DiscoveryClient) {
@@ -31,6 +34,12 @@ class UserService @Inject constructor(
     lateinit var uriInfo: UriInfo
 
     @POST
+    @ApiOperation(value = "Register a new user", response = AppUser::class)
+            @ApiResponses(value = [
+                ApiResponse(code = 201, message = "User created"),
+                ApiResponse(code = 400, message = "User with the same username already exists")
+            ]
+    )
     fun register(@Valid user: AppUser): Response {
 
         val existing = user.username?.let {
@@ -70,6 +79,12 @@ class UserService @Inject constructor(
     }
 
     @PUT
+    @ApiOperation(value = "Edit a new user by looking up existing user using username", response = AppUser::class)
+    @ApiResponses(value = [
+        ApiResponse(code = 200, message = "User updated"),
+        ApiResponse(code = 400, message = "User with given username can not be found")
+    ]
+    )
     fun edit(@Valid user: AppUser): Response {
         val existing = user.username?.let {
             userRepository.findByUsername(it)

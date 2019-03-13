@@ -1,6 +1,6 @@
-package com.github.huangp.User.repository
+package com.github.huangp.user.repository
 
-import com.github.huangp.User.model.AppUser
+import com.github.huangp.user.model.AppUser
 import org.springframework.data.repository.CrudRepository
 
 interface UserRepository : CrudRepository<AppUser, Long>{
